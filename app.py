@@ -1,8 +1,16 @@
-from os import name
+from datetime import datetime
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
+# Processes the year and then my name, instead of hardcoding it in base.html
+@app.context_processor
+def inject_globals():
+    return {
+        "current_year": datetime.now().year,
+        "site_owner": "Zion Chukwunelo",
+    }
 
 # home route
 @app.route("/")
