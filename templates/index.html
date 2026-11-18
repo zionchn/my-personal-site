@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--Hero section-->
+<section class="hero">
+    <div class="container hero-inner">
+        <p class="hero-role">AI Engineer</p>
+        <h1 class="hero-name">Zion Chukwunelo</h1>
+        <p class="hero-summary">Applying Python and LLM engineering to build solutions people can actually use.</p>
+        <a href="" class="btn">Contact Me</a>
+
+        <a href="" class="scroll-down" aria-label="Scroll down">
+            <img src="{{ url_for('static', filename='./assets/icons/arrow down_rounded.svg') }}" alt="">
+        </a>
+
+    </div>
+</section>
+
+
+<!--portfolio section, links to the main portfolio page-->
+<section class="portfolio" id="portfolio">
+    <div class="container portfolio-inner">
+        <div class="main-divider-line"></div>
+
+        <h2 class="portfolio-heading">What I’ve Built</h2>
+        <p class="portfolio-intro">I’ve built interesting projects around Data Science, LLM Engineering, web development and also general python. 
+            Have a look!</p>
+
+        <!--Portfolio list items are here, probably limiting it to 4-->
+        <div class="portfolio-list">
+            <a href="" class="portfolio-item">
+                <img src="{{ url_for('static', filename='assets/icons/frontend.svg') }}" alt="" class="portfolio-icon">
+                <div class="portfolio-text">
+                    <h3 class="portfolio-title">My Website</h3>
+                    <p class="portfolio-desc">My official portfolio website.</p>
+                </div>
+                <img src="{{ url_for('static', filename='assets/icons/right arrow.svg') }}" alt="" class="portfolio-arrow">
+            </a>
+            
+            <a href="" class="portfolio-item">
+                <img src="{{ url_for('static', filename='assets/icons/frontend.svg') }}" alt="" class="portfolio-icon">
+                <div class="portfolio-text">
+                    <h3 class="portfolio-title">Injective Lounge</h3>
+                    <p class="portfolio-desc">Official website for Injective lounge...</p>
+                </div>
+                <img src="{{ url_for('static', filename='assets/icons/right arrow.svg') }}" alt="" class="portfolio-arrow">
+            </a>
+
+            <a href="" class="portfolio-item">
+                <img src="{{ url_for('static', filename='assets/icons/ai.svg') }}" alt="" class="portfolio-icon">
+                <div class="portfolio-text">
+                    <h3 class="portfolio-title">Synthetic Data Generator</h3>
+                    <p class="portfolio-desc">A tool to generate synthetic datasets for you business needs.</p>
+                </div>
+                <img src="{{ url_for('static', filename='assets/icons/right arrow.svg') }}" alt="" class="portfolio-arrow">
+            </a>
+
+            <a href="" class="portfolio-item">
+                <img src="{{ url_for('static', filename='assets/icons/desktop app.svg') }}" alt="" class="portfolio-icon">
+                <div class="portfolio-text">
+                    <h3 class="portfolio-title">GUI App</h3>
+                    <p class="portfolio-desc">Desktop game app</p>
+                </div>
+                <img src="{{ url_for('static', filename='assets/icons/right arrow.svg') }}" alt="" class="portfolio-arrow">
+            </a>
+        </div>
+
+        <a href="" class="portfolio-more">See more</a>
+    </div>
+</section>
+
+
+<!--Tech stacks section-->
+<section class="tech-stacks" id="tech-stacks">
+    <div class="container tech-stacks-inner">
+        <div class="main-divider-line"></div>
+
+        <h2 class="tech-stacks-heading">My Preferred Tech Stacks</h2>
+        <p class="tech-stacks-intro">I have learnt how to build solutions with a decent number of tech stacks. I will keep on updating and adding more in the future.</p>
+
+        <div class="tech-stacks-list">
+            <div class="tech-stack-item">
+                <img src="{{ url_for('static', filename='assets/icons/frontend.svg') }}" alt="" class="tech-stack-icon">
+                <h3 class="tech-stack-title">Frontend</h3>
+                <p class="tech-stack-desc">Building clean static sites and simple UIs with HTML and CSS.</p>
+            </div>
+
+            <div class="tech-stack-item">
+                <img src="{{ url_for('static', filename='assets/icons/backend.svg') }}" alt="" class="tech-stack-icon">
+                <h3 class="tech-stack-title">Backend</h3>
+                <p class="tech-stack-desc">Building APIs, web apps, backends for AI projects with Python.</p>
+            </div>
+
+            <div class="tech-stack-item">
+                <img src="{{ url_for('static', filename='assets/icons/ai.svg') }}" alt="" class="tech-stack-icon">
+                <h3 class="tech-stack-title">AI / LLM</h3>
+                <p class="tech-stack-desc">Building chatbots, RAG systems, agents, AI tools with both frontier &amp; open-source models, LangChain.</p>
+            </div>
+
+            <div class="tech-stack-item">
+                <img src="{{ url_for('static', filename='assets/icons/version control.svg') }}" alt="" class="tech-stack-icon">
+                <h3 class="tech-stack-title">Version Control</h3>
+                <p class="tech-stack-desc">Version control, project hosting and collaboration with Git + Github.</p>
+            </div>
+
+            <div class="tech-stack-item">
+                <img src="{{ url_for('static', filename='assets/icons/deployment.svg') }}" alt="" class="tech-stack-icon">
+                <h3 class="tech-stack-title">Deployment</h3>
+                <p class="tech-stack-desc">Hosting site and apps with Vercel, Netlify, Render, or GitHub Pages.</p>
+            </div>
+
+            <div class="tech-stack-item">
+                <img src="{{ url_for('static', filename='assets/icons/database.svg') }}" alt="" class="tech-stack-icon">
+                <h3 class="tech-stack-title">Database</h3>
+                <p class="tech-stack-desc">Storing project data with SQLite, PostgreSQL, or simple JSON/files.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Tech stacks section-->
+<section class="lets-work" id="lets-work">
+    <div class="container lets-work-inner">
+        <div class="main-divider-line"></div>
+
+        <h2 class="lets-work-heading">Let's work together!</h2>
+        <a href="" class="btn">Contact Me</a>
+        
+    </div>
+</section>
+{% endblock %}

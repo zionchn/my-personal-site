@@ -1,0 +1,388 @@
+/* Reset the browser spacing */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+:root {
+    --bg: #141414;
+    --text: #fff;
+  }
+
+body {
+    background-color: #141414;
+    color: #F8F8F8;
+    margin: 0;
+    font-family: "Cabin", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Give the 220 margin as per my figma UI design*/
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+.container {
+    width: min(100% - 48px, 1000px);
+    margin-inline: auto;
+}
+
+/* navbar styling section */
+.nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-block: 24px;
+}
+
+.logo-link {
+    margin-right: auto;
+}
+
+
+/* Nav links styling section. Covers styling up till the underline hover style */
+.nav-links {
+    position: relative;
+    color: #F8F8F8;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.nav-links::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+}
+
+.nav-links:hover,
+.nav-links:focus-visible {
+  opacity: 0.8;
+}
+
+.nav-links:hover::after, .nav-links:focus-visible::after {
+    transform: scaleX(1);
+}
+
+
+/* Styling for the hero page, everything you see at first glance */
+.hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-role {
+    margin: 0 0 8px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+  }
+  
+  .hero-name {
+    margin: 0 0 24px;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  
+  .hero-summary {
+    margin: 0 0 40px;
+    max-width: 640px;
+    font-size: 1.375rem;
+    font-weight: 400;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 46px;
+    border-radius: 999px;
+    background: #f8f8f8;
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: opacity 0.2s ease;
+  }
+  
+  .btn:hover,
+  .btn:focus-visible {
+    opacity: 0.85;
+  }
+  
+  .scroll-down {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    padding: 8px;
+    color: var(--text);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .scroll-down img {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transform-origin: bottom center;
+    animation: ball-bounce 1s infinite;
+  }
+  
+  @keyframes ball-bounce {
+    /* on the floor, squashed: springs up, fast at first then slowing */
+    0%   { transform: translateY(0) scale(1.15, 0.8);
+           animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1); }
+    45%  { transform: translateY(-12px) scale(1, 1);
+           animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
+    90%  { transform: translateY(0) scale(1, 1);
+           animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1); }
+    100% { transform: translateY(0) scale(1.15, 0.8); }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-down img { animation: none; }
+  }
+  
+  .scroll-down:hover,
+  .scroll-down:focus-visible {
+    opacity: 1;
+  }
+
+
+/* Styling for the portfolio page */
+.main-divider-line {
+    width: 800px;
+    max-width: 100%;
+    height: 1px;
+    margin-inline: auto;
+    background: linear-gradient(
+      to right,
+      rgba(248, 248, 248, 0) 0%,
+      rgba(248, 248, 248, 0.6) 50%,
+      rgba(248, 248, 248, 0) 100%
+    );
+  }
+  
+  .portfolio, .tech-stacks {
+    padding-bottom: 120px;
+  }
+  
+  .portfolio-heading, .tech-stacks-heading {
+    margin: 186px 0 0;          /* 186px below the divider */
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+  
+  .portfolio-intro, .tech-stacks-intro {
+    max-width: 800px;
+    margin: 35px auto 0;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+  
+  .portfolio-list {
+    max-width: 994px;
+    margin: 75px auto 0;
+  }
+  
+  .portfolio-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 28px 64px;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(248, 248, 248, 0.15);
+    transition: background-color 0.2s ease;
+  }
+  
+  .portfolio-item:last-child {
+    border-bottom: 0;
+  }
+  
+  .portfolio-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+  
+  .portfolio-text {
+    flex: 1;                    /* pushes the arrow to the right edge */
+    min-width: 0;               /* lets the description truncate */
+  }
+  
+  .portfolio-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+  
+  .portfolio-desc {
+    margin: 4px 0 0;
+    font-size: 1.125rem;
+    font-weight: 400;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;        /* long descriptions get cut with … */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .portfolio-arrow {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .portfolio-item:hover .portfolio-arrow,
+  .portfolio-item:focus-visible .portfolio-arrow {
+    transform: translateX(8px);
+  }
+
+  .portfolio-item:hover .portfolio-title,
+  .portfolio-item:focus-visible .portfolio-title,
+  .portfolio-item:hover .portfolio-desc,
+  .portfolio-item:focus-visible .portfolio-desc,
+  .portfolio-item:hover .portfolio-icon,
+  .portfolio-item:focus-visible .portfolio-icon,
+  .portfolio-item:hover .portfolio-arrow,
+  .portfolio-item:focus-visible .portfolio-arrow {
+    opacity: 1;
+  }
+
+  .portfolio-item:hover,
+  .portfolio-item:focus-visible {
+  background-color: rgba(248, 248, 248, 0.02);
+}
+  
+@media (max-width: 900px) {
+   .portfolio-heading,
+   .tech-stacks-heading { margin-top: 120px; }
+   .portfolio-item { padding-inline: 16px; gap: 16px; }
+ }
+ 
+ /* For See more part */
+ .portfolio-more {
+   position: relative;
+   display: block;
+   width: fit-content;
+   margin: 35px auto 0;
+   color: inherit;
+   text-decoration: none;
+   font-size: 1.125rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.portfolio-more::before {
+  content: "→";
+  position: absolute;
+  right: -28px;                /* outside the text, so "See more" stays centred */
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.portfolio-more:hover,
+.portfolio-more:focus-visible {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.portfolio-more:hover::before,
+.portfolio-more:focus-visible::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-more,
+  .portfolio-more::before { transition: none; }
+}
+
+
+/* Tech stacks list section */
+.tech-stacks-list {
+  --cols: 4;
+  --gap: 32px;
+  --row-gap: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;          /* centres the shorter last row */
+  gap: var(--row-gap) var(--gap);
+  margin-top: 120px;
+}
+
+.tech-stack-item {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  text-align: center;
+}
+
+.tech-stack-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-inline: auto;
+}
+
+.tech-stack-title {
+  margin: 20px 0 12px;
+  font-size: 1.125rem;              /* 18px */
+  font-weight: 600;
+  /* no opacity, as specified */
+}
+
+.tech-stack-desc {
+  margin: 0;
+  font-size: 0.875rem;              /* 14px */
+  font-weight: 400;
+  opacity: 0.8;
+  text-wrap: balance;               /* keeps the lines even, like your Figma */
+}
+
+@media (max-width: 900px) {
+  .tech-stacks-list { --cols: 2; --row-gap: 64px; margin-top: 72px; }
+}
+
+@media (max-width: 560px) {
+  .tech-stacks-list { --cols: 1; }
+}
+
+/* Let's work section */
+ 
