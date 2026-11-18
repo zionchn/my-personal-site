@@ -194,7 +194,7 @@ nav {
     padding-bottom: 120px;
   }
   
-  .portfolio-heading, .tech-stacks-heading {
+  .portfolio-heading, .tech-stacks-heading, .lets-work-heading {
     margin: 186px 0 0;          /* 186px below the divider */
     text-align: center;
     font-size: 1.75rem;
@@ -385,4 +385,18 @@ nav {
 }
 
 /* Let's work section */
- 
+.lets-work-heading {
+    margin-top: 100px;
+  }
+  
+  .lets-work {
+    padding-bottom: 215px;       /* space between the button and the footer */
+  }
+  
+  .lets-work-inner {
+    text-align: center;          /* centres the inline-flex button */
+  }
+  
+  .lets-work .btn {
+    margin-top: 35px;
+  }
