@@ -4,17 +4,37 @@
   }
 
 :root {
-    --bg: #141414;
-    --text: #fff;
-  }
+  --bg: #171717;
+  --text: #f8f8f8;
+  --text-rgb: 248, 248, 248;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f8f8f8;
+  --text: #171717;
+  --text-rgb: 23, 23, 23;
+  color-scheme: light;
+}
+
+:root[data-theme="light"] :is(
+  .header-logo,
+  .portfolio-icon,
+  .portfolio-arrow,
+  .tech-stack-icon,
+  .scroll-down img
+) {
+  filter: invert(1);
+}
 
 body {
-    background-color: #141414;
-    color: #F8F8F8;
+    background-color: var(--bg);
+    color: var(--text);
     margin: 0;
     font-family: "Cabin", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Give the 220 margin as per my figma UI design*/
@@ -47,7 +67,7 @@ nav {
 /* Nav links styling section. Covers styling up till the underline hover style */
 .nav-links {
     position: relative;
-    color: #F8F8F8;
+    color: var(--text);
     text-decoration: none;
     font-size: 1rem;
 }
@@ -73,6 +93,33 @@ nav {
 .nav-links:hover::after, .nav-links:focus-visible::after {
     transform: scaleX(1);
 }
+
+
+/* Styling for the dark/white mode toggle */
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    margin-right: -10px;
+    background: transparent;
+    color: var(--text);
+    opacity: 0.8;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible {
+    opacity: 1;
+  }
+  
+  /* dark mode shows the sun, light mode shows the moon */
+  .theme-toggle .icon-moon { display: none; }
+  :root[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
+  :root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 
 /* Styling for the hero page, everything you see at first glance */
@@ -122,7 +169,7 @@ nav {
     width: 150px;
     height: 46px;
     border-radius: 999px;
-    background: #f8f8f8;
+    background: var(--text);
     color: var(--bg);
     text-decoration: none;
     font-size: 1rem;
@@ -183,10 +230,10 @@ nav {
     height: 1px;
     margin-inline: auto;
     background: linear-gradient(
-      to right,
-      rgba(248, 248, 248, 0) 0%,
-      rgba(248, 248, 248, 0.6) 50%,
-      rgba(248, 248, 248, 0) 100%
+        to right,
+        rgba(var(--text-rgb), 0) 0%,
+        rgba(var(--text-rgb), 0.6) 50%,
+        rgba(var(--text-rgb), 0) 100%
     );
   }
   
@@ -217,13 +264,40 @@ nav {
   
   .portfolio-item {
     display: flex;
+    position: relative;
+    isolation: isolate;
     align-items: center;
     gap: 40px;
     padding: 28px 64px;
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid rgba(248, 248, 248, 0.15);
+    border-bottom: 1px solid rgba(var(--text-rgb), 0.15);
     transition: background-color 0.2s ease;
+  }
+
+  .portfolio-item::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .portfolio-item::before {
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(var(--text-rgb), 0) 0%,
+      rgba(var(--text-rgb), 0.05) 25%,
+      rgba(var(--text-rgb), 0.05) 75%,
+      rgba(var(--text-rgb), 0) 100%
+    );
+  }
+
+  .portfolio-item:hover::before,
+  .portfolio-item:focus-visible::before {
+    opacity: 1;
   }
   
   .portfolio-item:last-child {
@@ -272,7 +346,7 @@ nav {
   
   .portfolio-item:hover .portfolio-arrow,
   .portfolio-item:focus-visible .portfolio-arrow {
-    transform: translateX(8px);
+    transform: translateX(10px);
   }
 
   .portfolio-item:hover .portfolio-title,
@@ -288,7 +362,7 @@ nav {
 
   .portfolio-item:hover,
   .portfolio-item:focus-visible {
-  background-color: rgba(248, 248, 248, 0.02);
+    background-color: rgba(var(--text-rgb), 0.02);
 }
   
 @media (max-width: 900px) {

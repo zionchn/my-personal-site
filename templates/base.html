@@ -8,18 +8,42 @@
     <!-- Font stuff for cabin font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='./assets/images/favicon.svg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!--Sets saved theme before page loads, no black flash will be seen by peeps with white mode-->
+    <script>
+        (function () {
+          var theme = "dark";
+          try { theme = localStorage.getItem("theme") || "dark"; } catch (e) {}
+          document.documentElement.setAttribute("data-theme", theme);
+        })();
+      </script>
 </head>
 <body>
     <nav>
         <div class="container nav-inner">
-            <a href="" class="logo-link"><img src="{{url_for ('static', filename='./assets/images/logo.svg') }}" alt="logo"></a>
-            <a href="" class="nav-links">Portfolio</a>
-            <a href="" class="nav-links">About</a>
-            <a href="" class="nav-links">Contact</a>
+            <a href="{{ url_for('home') }}" class="logo-link"><img src="{{ url_for('static', filename='assets/images/logo.svg') }}" alt="logo" class="header-logo"></a>
+            <a href="{{ url_for('portfolio') }}" class="nav-links">Portfolio</a>
+            <a href="{{ url_for('about') }}" class="nav-links">About</a>
+            <a href="{{ url_for('contact') }}" class="nav-links">Contact</a>
+
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode">
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2"/><path d="M12 20v2"/>
+                    <path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/>
+                    <path d="M2 12h2"/><path d="M20 12h2"/>
+                    <path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+                </svg>
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                </svg>
+            </button>
         </div>
     </nav>
 
@@ -37,5 +61,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
 </body>
 </html>
