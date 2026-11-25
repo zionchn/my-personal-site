@@ -95,6 +95,80 @@ nav {
 }
 
 
+/* Hamburger stuff for smaller screens*/
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-toggle {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.nav-toggle span:nth-child(1) { top: 13px; }
+.nav-toggle span:nth-child(2) { top: 19px; }
+.nav-toggle span:nth-child(3) { top: 25px; }
+
+/* turns into an X when open */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+
+/* Mobile rules to activate it */
+@media (max-width: 768px) {
+  .nav-inner { gap: 0.5rem; }
+  .nav-toggle { display: block; margin-right: -10px; }  /* lines sit flush with the margin */
+  .theme-toggle { margin-right: 0; }                    /* the hamburger is now the last item */
+
+  /* the links become a dropdown panel under the nav bar */
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 24px 24px;
+    background: var(--bg);
+    border-bottom: 1px solid rgba(var(--text-rgb), 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .nav-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav-menu .nav-links { padding: 16px 0; font-size: 1.125rem; }
+  .nav-menu .nav-links::after { display: none; }        /* no sliding underline in the panel */
+}
+
+
 /* Styling for the dark/white mode toggle */
 .theme-toggle {
     display: grid;
@@ -450,13 +524,45 @@ nav {
   text-wrap: balance;               /* keeps the lines even, like your Figma */
 }
 
-@media (max-width: 900px) {
-  .tech-stacks-list { --cols: 2; --row-gap: 64px; margin-top: 72px; }
+/* Mobile responsiveness */
+.tech-stacks-list {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-top: 72px;
+  margin-inline: -24px;              /* break out of the container's 24px side space... */
+  padding-inline: 24px;              /* ...then pad back in, so the scroll runs edge to edge */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 24px;
+  overscroll-behavior-x: contain;    /* stops the browser's back-swipe from triggering at the end */
+  scrollbar-width: none;
 }
 
-@media (max-width: 560px) {
-  .tech-stacks-list { --cols: 1; }
+.tech-stacks-list::-webkit-scrollbar { display: none; }
+
+.tech-stack-item {
+  flex: 0 0 min(240px, 70%);         /* ~70% wide, so the next card peeks in as a hint */
+  scroll-snap-align: start;
 }
+
+.hero { padding-block: 120px; }                 /* short screens: content can't hit the nav or arrow */
+.hero-summary { font-size: 1.125rem; }
+.portfolio-heading, .tech-stacks-heading { margin-top: 96px; }
+.portfolio-intro, .tech-stacks-intro { font-size: 1.125rem; }
+.portfolio-list { margin-top: 48px; }
+.portfolio-title { font-size: 1.125rem; }
+.portfolio-desc { font-size: 1rem; }
+.lets-work-heading { margin-top: 72px; }
+.lets-work { padding-bottom: 120px; }
+
+@media (hover: hover) {
+  .portfolio-item:hover::before { opacity: 1; }
+  .portfolio-item:hover .portfolio-arrow { transform: translateX(8px); }
+  /* ...the other :hover selectors */
+}
+
+.footer-links a { padding-block: 12px; }
 
 /* Let's work section */
 .lets-work-heading {
