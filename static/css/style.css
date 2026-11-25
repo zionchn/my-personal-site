@@ -19,9 +19,7 @@
 
 :root[data-theme="light"] :is(
   .header-logo,
-  .portfolio-icon,
   .portfolio-arrow,
-  .tech-stack-icon,
   .scroll-down img
 ) {
   filter: invert(1);
